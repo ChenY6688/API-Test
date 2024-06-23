@@ -3,14 +3,15 @@
 namespace App\Services;
 
 use InvalidArgumentException;
+use App\Services\Interfaces\ICurrencyExchangeService;
 
-class CurrencyExchangeService
+class CurrencyExchangeService implements ICurrencyExchangeService
 {
     private $rates;
 
-    public function __construct(array $rates)
+    public function __construct()
     {
-        $this->rates = $rates;
+        $this->rates = config('constants.currency_rates');;
     }
 
     public function convert(string $source, string $target, $amount): string

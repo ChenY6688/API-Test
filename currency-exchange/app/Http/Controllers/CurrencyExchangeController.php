@@ -17,9 +17,15 @@ class CurrencyExchangeController extends Controller
 
     public function convert(Request $request)
     {
-        $source = $request->query('source');
-        $target = $request->query('target');
-        $amount = $request->query('amount');
+        $request->validate([
+            'source' => ['required', 'string'],
+            'target' => ['required', 'string'],
+            'amount' => ['nullable', 'string'],
+        ]); 
+
+        $source = $request->input('source');
+        $target = $request->input('target');
+        $amount = $request->input('amount');
 
         try {
             $convertedAmount = $this->currencyExchangeService->convert($source, $target, $amount);
