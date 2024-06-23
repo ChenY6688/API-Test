@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\CurrencyExchangeService;
+use App\Services\Interfaces\ICurrencyExchangeService;
 use InvalidArgumentException;
 
 class CurrencyExchangeController extends Controller
 {
     private $currencyExchangeService;
 
-    public function __construct(CurrencyExchangeService $currencyExchangeService)
+    public function __construct(ICurrencyExchangeService $currencyExchangeService)
     {
         $this->currencyExchangeService = $currencyExchangeService;
     }
